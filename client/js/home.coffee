@@ -26,6 +26,8 @@ ng.controller 'HomeCtrl', ['$scope', ($scope) ->
 	$scope.message = {"t": Date.now(), "message": 'message here'}
 	$scope.error = 'This is an example error'
 	
+	$scope.timeleft = 5*50 #5 minutes
+	
 	$scope.$on 'heartbeat', (event, ts) ->
 		$scope.ts = ts
 	
