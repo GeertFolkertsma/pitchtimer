@@ -1,4 +1,4 @@
-html
+html(ng-app="rpt")
 	head
 		meta(name='viewport',content='width=device-width')
 		title RaM pitch timer
@@ -9,7 +9,7 @@ html
 		script(src='js/home.js')
 	
 		body
-			.main
+			.main(ng-controller="HomeCtrl")
 				h1 TIMER
 				p.error {{ error }}
 				p.message
