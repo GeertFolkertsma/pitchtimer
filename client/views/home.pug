@@ -4,7 +4,7 @@ html(ng-app="rpt")
 		title RaM pitch timer
 		link(rel='stylesheet', href='/style/main.css')
 		link(rel='stylesheet', href='/style/home.css')
-		//- script(src='lib/primus.js')
+		script(src='lib/primus.js')
 		script(src='lib/angular.min.js')
 		script(src='js/home.js')
 	
@@ -13,5 +13,6 @@ html(ng-app="rpt")
 				h1 TIMER
 				p.error {{ error }}
 				p.message
-					span.timestamp {{ message.t |date:'HH:mm:ss' }}
+					span.timestamp {{ message.t |date:'HH:mm:ss' }} 
 					span {{ message.message }}
+				p {{ ts|date:'HH:mm:ss' }}
