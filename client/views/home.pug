@@ -1,0 +1,17 @@
+html
+	head
+		meta(name='viewport',content='width=device-width')
+		title RaM pitch timer
+		link(rel='stylesheet', href='/style/main.css')
+		link(rel='stylesheet', href='/style/home.css')
+		//- script(src='lib/primus.js')
+		script(src='lib/angular.min.js')
+		script(src='js/home.js')
+	
+		body
+			.main
+				h1 TIMER
+				p.error {{ error }}
+				p.message
+					span.timestamp {{ message.t |date:'HH:mm:ss' }}
+					span {{ message.message }}
