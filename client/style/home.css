@@ -1,7 +1,12 @@
-svg {
+.timer_container {
 	position: fixed;
-	top: 50%;
-	left: 50%;
-	margin-left: -200px;
-	margin-top: -200px;
+	width: 60%;
+	text-align: center;
+	left: 20%;
+	top: 10%;
+}
+.timer_container p{
+	margin-top: -216px;
+	font-size: 32px;
+	font-weight: bold;
 }

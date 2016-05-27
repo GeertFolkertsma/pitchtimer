@@ -35,6 +35,9 @@ ng.controller 'HomeCtrl', ['$scope', 'durationFilter', ($scope,duration) ->
 	$scope.error = 'This is an example error'
 	
 	$scope.timeleft = 1*60 #5 minutes
+	$scope.is_running = false
+	$scope.is_active = true
+	
 	$scope.polypoints = "200,200 200,-600 600,200"
 	$scope.colour = "hsl(120,100%,50%)"
 	$scope.width = 400
@@ -57,11 +60,18 @@ ng.controller 'HomeCtrl', ['$scope', 'durationFilter', ($scope,duration) ->
 		$scope.colour = "hsl(#{Math.round(frac*120)},100%,50%)"
 	
 	setInterval ->
-			$scope.$apply => $scope.timeleft -= 1
-		, 1000
+			if($scope.is_running)
+				$scope.$apply => $scope.timeleft -= 1
+			$scope.$apply => $scope.ts = Date.now()
+		,1000
+	
+	$scope.start = ->
+		$scope.is_running = true
+	$scope.stop = ->
+		$scope.is_running = false
 	
 	$scope.$on 'heartbeat', (event, ts) ->
-		$scope.ts = ts
+		$scope.hbts = ts
 	
 	$scope.$on 'data', (event, data) ->
 		$scope.message = 

@@ -15,9 +15,14 @@ html(ng-app="rpt")
 				p.message
 					span.timestamp {{ message.t |date:'HH:mm:ss' }} 
 					span {{ message.message }}
-				p {{ timeleft|duration }}
+				
 				p {{ ts|date:'HH:mm:ss' }}
 				
-				svg(width='400',height='400')
-					circle(cx='200',cy='200',r='180',stroke-width="40",fill="white",ng-attr-stroke="{{colour}}")
-					polygon(ng-attr-points="{{polypoints}}",style="fill:white;stroke:none")
+				p(ng-click="start()") START
+				p(ng-click="stop()") STOP
+				
+				.timer_container(ng-show="is_active")
+					svg(width='400',height='400')
+						circle(cx='200',cy='200',r='180',stroke-width="40",fill="white",ng-attr-stroke="{{colour}}")
+						polygon(ng-attr-points="{{polypoints}}",style="fill:white;stroke:none")
+					p {{ timeleft|duration }}
