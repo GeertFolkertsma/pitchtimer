@@ -23,8 +23,9 @@ primus.save "#{__dirname}/client/lib/primus.js"
 
 setTimeout ->
 		primus.forEach (spark) ->
+			console.log 'Sending out reload message'
 			spark.emit 'reload'
-	, 1000
+	, 1500
 
 primus.on 'connection', (spark) ->
 	console.log 'Client connected'

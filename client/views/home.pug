@@ -17,3 +17,7 @@ html(ng-app="rpt")
 					span {{ message.message }}
 				p {{ timeleft|duration }}
 				p {{ ts|date:'HH:mm:ss' }}
+				
+				svg(width='400',height='400')
+					circle(cx='200',cy='200',r='180',stroke-width="40",fill="white",ng-attr-stroke="{{colour}}")
+					polygon(ng-attr-points="{{polypoints}}",style="fill:white;stroke:none")
