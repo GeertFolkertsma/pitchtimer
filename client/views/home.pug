@@ -15,5 +15,5 @@ html(ng-app="rpt")
 				p.message
 					span.timestamp {{ message.t |date:'HH:mm:ss' }} 
 					span {{ message.message }}
-				p {{ timeleft|date:'mm:ss' }}
+				p {{ timeleft|duration }}
 				p {{ ts|date:'HH:mm:ss' }}

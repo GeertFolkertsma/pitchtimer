@@ -22,11 +22,19 @@ ng.run ['$rootScope', ($rootScope) ->
 		$rootScope.$apply => $rootScope.$broadcast 'data', data
 ]
 
-ng.controller 'HomeCtrl', ['$scope', ($scope) ->
+ng.filter 'duration', ->
+	(secs) ->
+		m = Math.floor secs / 60
+		s = secs % 60
+		s = "0"+s unless s >= 10
+		s = "0"+s if s == "0"
+		"#{m}:#{s}"
+
+ng.controller 'HomeCtrl', ['$scope', 'durationFilter', ($scope,duration) ->
 	$scope.message = {"t": Date.now(), "message": 'message here'}
 	$scope.error = 'This is an example error'
 	
-	$scope.timeleft = 5*50 #5 minutes
+	$scope.timeleft = 5*60 #5 minutes
 	
 	$scope.$on 'heartbeat', (event, ts) ->
 		$scope.ts = ts

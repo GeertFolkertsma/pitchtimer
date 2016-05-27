@@ -1,0 +1,4 @@
+{
+	"verbose": true,
+	"ignore": ["*.coffee", "client/lib/primus.js"]
+}
