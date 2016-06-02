@@ -1,0 +1,20 @@
+html(ng-app="rpt")
+	head
+		meta(name='viewport',content='width=device-width')
+		title RaM pitch timer control
+		link(rel='stylesheet', href='/style/main.css')
+		script(src='lib/primus.js')
+		script(src='lib/angular.min.js')
+		script(src='js/control.js')
+	
+		body
+			.main(ng-controller="ControlCtrl")
+				h1 TIMER CONTROL
+				p.error {{ error }}
+				p.message
+					span.timestamp {{ message.t |date:'HH:mm:ss' }} 
+					span {{ message.message }}
+				
+				p(ng-click="start()") START
+				p(ng-click="stop()") STOP
+				

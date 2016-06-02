@@ -13,6 +13,8 @@ app.use express.static('client')
 
 app.get '/', (req,res) ->
 	res.render 'home'
+app.get '/control', (req,res) ->
+	res.render 'control'
 
 server = http.createServer app
 
@@ -35,6 +37,15 @@ primus.on 'connection', (spark) ->
 	
 	spark.on 'testing', (data) ->
 		console.log 'testing data: ', data
+	
+	spark.on 'start_timer', (spark) ->
+		# broadcast the event
+		primus.forEach (spark_) ->
+			spark_.emit 'start_timer'
+	spark.on 'stop_timer', (spark) ->
+		primus.forEach (spark_) ->
+			spark_.emit 'stop_timer'
+	
 
 setInterval ->
 		primus.forEach (spark) ->
