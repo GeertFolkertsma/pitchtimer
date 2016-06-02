@@ -15,8 +15,30 @@ html(ng-app="rpt")
 					span.timestamp {{ message.t |date:'HH:mm:ss' }} 
 					span {{ message.message }}
 				
-				p(ng-click="start()") START
-				p(ng-click="stop()") STOP
-				input(ng-model="T")
-				input(type="button",ng-click="set()",value="SET")
+				
+				table
+					tr
+						th Period
+						th Time
+					tr
+						td
+							input(ng-model="timeleft")
+						td
+							input(ng-model="T")
+					tr
+						td
+							input(type='button',ng-click='set_time()',value='Set time')
+							input(type='button',ng-click='reset_time()',value='Reset')
+								
+						td
+							input(type='button',ng-click='set_period()',value='Set T')
+				table
+					tr
+						td
+							input(type='button',ng-click='start()',value='START')
+						td
+							input(type='button',ng-click='stop()',value='STOP')
+					tr
+						td
+							input(type="button",ng-click="set()",value="SET")
 				

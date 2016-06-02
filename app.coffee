@@ -38,16 +38,10 @@ primus.on 'connection', (spark) ->
 	spark.on 'testing', (data) ->
 		console.log 'testing data: ', data
 	
-	spark.on 'start_timer', ->
-		# broadcast the event
+	spark.on 'timer', (data) ->
+		# simply broadcast the event
 		primus.forEach (spark_) ->
-			spark_.emit 'start_timer'
-	spark.on 'stop_timer', ->
-		primus.forEach (spark_) ->
-			spark_.emit 'stop_timer'
-	spark.on 'set_timer', (T) ->
-		primus.forEach (spark_) ->
-			spark_.emit 'set_timer', T
+			spark_.emit 'timer', data
 	
 
 setInterval ->

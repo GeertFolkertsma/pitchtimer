@@ -35,13 +35,22 @@ ng.controller 'ControlCtrl', ['$scope', 'durationFilter', ($scope,duration) ->
 	$scope.error = 'This is an example error'
 	
 	$scope.T = 5*60 #5 minutes
+	$scope.timeleft = 4*60
+	
+	send_action = (action, data) ->
+		primus.emit 'timer', {"action": action, "data": data}
 	
 	$scope.start = ->
-		primus.emit 'start_timer'
+		send_action 'start', {}
 	$scope.stop = ->
-		primus.emit 'stop_timer'
-	$scope.set = ->
-		primus.emit 'set_timer', $scope.T
+		send_action 'stop', {}
+	$scope.set_time = ->
+		send_action 'set_time', $scope.timeleft
+	$scope.reset_time = ->
+		$scope.timeleft = $scope.T
+		$scope.set_time()
+	$scope.set_period = ->
+		send_action 'set_period', $scope.T
 	
 	$scope.$on 'heartbeat', (event, ts) ->
 		$scope.hbts = ts

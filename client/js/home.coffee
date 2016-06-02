@@ -17,6 +17,9 @@ ng.run ['$rootScope', ($rootScope) ->
 	primus.on 'rpt_heartbeat', (ts) ->
 		$rootScope.$apply => $rootScope.$broadcast 'heartbeat', ts
 	
+	primus.on 'timer', (data) ->
+		$rootScope.$apply => $rootScope.$broadcast 'timer', data
+	
 	primus.on 'start_timer', ->
 		$rootScope.$apply => $rootScope.$broadcast 'start_timer'
 	primus.on 'stop_timer', ->
@@ -42,6 +45,7 @@ ng.controller 'HomeCtrl', ['$scope', 'durationFilter', ($scope,duration) ->
 	$scope.error = 'This is an example error'
 	
 	$scope.timeleft = 1*60 #5 minutes
+	$scope.T = 5*60
 	$scope.is_running = false
 	$scope.is_active = true
 	
@@ -50,8 +54,11 @@ ng.controller 'HomeCtrl', ['$scope', 'durationFilter', ($scope,duration) ->
 	$scope.width = 400
 	
 	$scope.$watch 'timeleft', (oldt,t) ->
+		redraw(t)
+	
+	redraw = (t) ->
 		# Redraw the svg timer thingy
-		frac = t / (5*60) #runs from 1 to 0
+		frac = t / ($scope.T) #runs from 1 to 0
 		w = $scope.width
 		r = w / 2 * Math.sqrt(2)
 		
@@ -63,6 +70,7 @@ ng.controller 'HomeCtrl', ['$scope', 'durationFilter', ($scope,duration) ->
 		circle_points = ({x: w / 2 + r*Math.cos(a), y: w / 2 - r*Math.sin(a)} for a in angles)
 		for p in circle_points
 			polypoints += " #{p.x},#{p.y}"
+		
 		$scope.polypoints = polypoints
 		$scope.colour = "hsl(#{Math.round(frac*120)},100%,50%)"
 	
@@ -77,12 +85,15 @@ ng.controller 'HomeCtrl', ['$scope', 'durationFilter', ($scope,duration) ->
 	$scope.stop = ->
 		$scope.is_running = false
 	
-	$scope.$on 'start_timer', (event) ->
-		$scope.is_running = true
-	$scope.$on 'stop_timer', (event) ->
-		$scope.is_running = false
-	$scope.$on 'set_timer', (event, T) ->
-		$scope.timeleft = T
+	$scope.$on 'timer', (event, data) ->
+		console.log data
+		switch data.action
+			when 'start' then $scope.is_running = true
+			when 'stop' then $scope.is_running = false
+			when 'set_period' then $scope.T = data.data
+			when 'set_time'
+				$scope.timeleft = data.data
+				redraw(data.data)
 	
 	$scope.$on 'heartbeat', (event, ts) ->
 		$scope.hbts = ts
