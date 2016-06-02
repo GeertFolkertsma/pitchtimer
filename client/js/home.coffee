@@ -21,7 +21,8 @@ ng.run ['$rootScope', ($rootScope) ->
 		$rootScope.$apply => $rootScope.$broadcast 'start_timer'
 	primus.on 'stop_timer', ->
 		$rootScope.$apply => $rootScope.$broadcast 'stop_timer'
-	
+	primus.on 'set_timer', (T) ->
+		$rootScope.$apply => $rootScope.$broadcast 'set_timer', T
 	
 	primus.on 'data', (data) ->
 		console.log 'data', data
@@ -80,6 +81,8 @@ ng.controller 'HomeCtrl', ['$scope', 'durationFilter', ($scope,duration) ->
 		$scope.is_running = true
 	$scope.$on 'stop_timer', (event) ->
 		$scope.is_running = false
+	$scope.$on 'set_timer', (event, T) ->
+		$scope.timeleft = T
 	
 	$scope.$on 'heartbeat', (event, ts) ->
 		$scope.hbts = ts

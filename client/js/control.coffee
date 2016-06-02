@@ -40,6 +40,8 @@ ng.controller 'ControlCtrl', ['$scope', 'durationFilter', ($scope,duration) ->
 		primus.emit 'start_timer'
 	$scope.stop = ->
 		primus.emit 'stop_timer'
+	$scope.set = ->
+		primus.emit 'set_timer', $scope.T
 	
 	$scope.$on 'heartbeat', (event, ts) ->
 		$scope.hbts = ts
