@@ -1,28 +1,25 @@
-html(ng-app="rpt")
+html
 	head
 		meta(name='viewport',content='width=device-width')
 		title RaM pitch timer
 		link(rel='stylesheet', href='/style/main.css')
 		link(rel='stylesheet', href='/style/home.css')
 		script(src='lib/primus.js')
-		script(src='lib/angular.min.js')
+		script(src='lib/jquery-3.0.0.js')
 		script(src='js/home.js')
 	
 		body
-			.main(ng-controller="HomeCtrl")
+			.main
 				h1 TIMER
 				p.error {{ error }}
-				p.message
-					span.timestamp {{ message.t |date:'HH:mm:ss' }} 
-					span {{ message.message }}
 				
-				p {{ ts|date:'HH:mm:ss' }}
+				p#timedisplay
 				
-				p(ng-click="start()") START
-				p(ng-click="stop()") STOP
+				p#startbutton START
+				p#stopbutton STOP
 				
 				.timer_container(ng-show="is_active")
-					svg(width='400',height='400')
+					svg#clockface(width='400',height='400')
 						circle(cx='200',cy='200',r='180',stroke-width="40",fill="white",ng-attr-stroke="{{colour}}")
-						polygon(ng-attr-points="{{polypoints}}",style="fill:white;stroke:none")
-					p {{ timeleft|duration }}
+						polygon(points="0,0 1,1",style="fill:white;stroke:none")
+					p#timeleftdisplay
