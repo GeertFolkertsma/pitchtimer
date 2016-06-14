@@ -1,44 +1,34 @@
-html(ng-app="rpt")
+html
 	head
 		meta(name='viewport',content='width=device-width')
 		title RaM pitch timer control
 		link(rel='stylesheet', href='/style/main.css')
 		script(src='lib/primus.js')
-		script(src='lib/angular.min.js')
+		script(src='lib/jquery-3.0.0.js')
 		script(src='js/control.js')
 	
 		body
-			.main(ng-controller="ControlCtrl")
+			.main
 				h1 TIMER CONTROL
-				p.error {{ error }}
-				p.message
-					span.timestamp {{ message.t |date:'HH:mm:ss' }} 
-					span {{ message.message }}
-				
-				
 				table
 					tr
 						th Period
 						th Time
 					tr
 						td
-							input(ng-model="timeleft")
+							input#timeleft(value=300)
 						td
-							input(ng-model="T")
+							input#T(value=300)
 					tr
 						td
-							input(type='button',ng-click='set_time()',value='Set time')
-							input(type='button',ng-click='reset_time()',value='Reset')
+							input#set_time(type='button',value='Set time')
+							input#reset_time(type='button',value='Reset')
 								
 						td
-							input(type='button',ng-click='set_period()',value='Set T')
+							input#set_period(type='button',value='Set T')
 				table
 					tr
 						td
-							input(type='button',ng-click='start()',value='START')
+							input#start(type='button',value='START')
 						td
-							input(type='button',ng-click='stop()',value='STOP')
-					tr
-						td
-							input(type="button",ng-click="set()",value="SET")
-				
+							input#stop(type='button',value='STOP')
