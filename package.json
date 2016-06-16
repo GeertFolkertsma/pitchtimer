@@ -4,6 +4,8 @@
   "description": "Timer (clock) for RaM pitches",
   "main": "app.js",
   "scripts": {
+    "compile": "coffee --compile .",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
