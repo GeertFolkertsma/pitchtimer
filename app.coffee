@@ -49,5 +49,5 @@ setInterval ->
 			spark.emit 'rpt_heartbeat', "#{Date.now()}"
 	, 2000
 
-server.listen 3000, ->
-	console.log 'Listening on port 3000'
+server.listen 3003, ->
+	console.log 'Listening on port 3003'
