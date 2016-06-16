@@ -5,7 +5,7 @@ window.timer =
 	is_running: false
 	is_active: true
 	
-	width: 400
+	size: 400
 
 primus.on 'open', ->
 	primus.write
@@ -46,7 +46,17 @@ secs2duration = (secs) ->
 message = {"t": Date.now(), "message": 'message here'}
 error = 'This is an example error'
 
-
+resize = () ->
+	# sizes the svg and all container divs etc such that it nicely fills the screen
+	# want to fill about 70% of the window
+	w = $(window).width()*0.7
+	h = $(window).height()*0.7
+	s = Math.min w,h
+	timer.size = s
+	$('#clockface').width(s).height(s)
+	$('#timeleftdisplay').css
+		'font-size': Math.round(s/ 10) + 'px'
+		'margin-top': Math.round(-s/ 2 - s/ 20 ) + 'px'
 
 update = () ->
 	redraw(timer.timeleft)
@@ -61,7 +71,7 @@ redraw = (t) ->
 	# Redraw the svg timer thingy
 	frac = t / (timer.T) #runs from 1 to 0
 	if frac < 0 then frac = 0 #do not go below 0
-	w = timer.width
+	w = timer.size
 	r = w / 2 * Math.sqrt(2)
 	
 	pc = {x: w / 2, y: w / 2 }
@@ -80,6 +90,7 @@ redraw = (t) ->
 $ ->
 	$('#startbutton').on 'click', start
 	$('#stopbutton').on 'click', stop
+	resize()
 	setInterval ->
 			if(timer.is_running)
 				timer.timeleft -= 1

@@ -1,11 +1,11 @@
 .timer_container {
 	position: fixed;
-	width: 60%;
+	width: 70%;
 	text-align: center;
 	left: 20%;
 	top: 10%;
 }
-.timer_container p{
+#timeleftdisplay{
 	margin-top: -216px;
 	font-size: 32px;
 	font-weight: bold;
