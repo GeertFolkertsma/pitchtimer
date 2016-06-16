@@ -10,6 +10,9 @@
 	font-size: 32px;
 	font-weight: bold;
 }
+#timedisplay{
+	font-size: 16px;
+}
 
 .overtime{
 	color: red;

@@ -41,7 +41,10 @@ secs2duration = (secs) ->
 	s = "0"+s unless s >= 10
 	s = "0"+s if s == "0"
 	"#{m}:#{s}"
-
+timepad = (n) ->
+	n < 10 ? "0#{n}" : "#{n}"
+formattime = (d) ->
+	timepad(d.getHours()) + ":" + timepad(d.getMinutes()) + ":" +  timepad(d.getSeconds())
 
 message = {"t": Date.now(), "message": 'message here'}
 error = 'This is an example error'
@@ -57,6 +60,7 @@ resize = () ->
 	$('#timeleftdisplay').css
 		'font-size': Math.round(s/ 10) + 'px'
 		'margin-top': Math.round(-s/ 2 - s/ 20 ) + 'px'
+	$('#timedisplay').css('font-size', Math.round(s/ 20)+'px')
 
 update = () ->
 	redraw(timer.timeleft)
@@ -97,6 +101,7 @@ $ ->
 				update()
 			ts = new Date()
 			# TODO print timestamp on object somewhere
+			
 			timestr = ts.toLocaleTimeString()
 			$('#timedisplay').html timestr.substr(0,timestr.length-6)
 		,1000
