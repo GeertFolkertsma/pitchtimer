@@ -37,3 +37,10 @@ $ ->
 		$('#set_time').click()
 	$('#set_period').click ->
 		send_action 'set_period', parseTime $('#T').val()
+	
+	$('#T,#timeleft').keydown (event) ->
+		if event.which == 13
+			if $(this).attr('id') == 'T'
+				$('#set_period').click()
+			else
+				$('#set_time').click()

@@ -39,12 +39,11 @@ secs2duration = (secs) ->
 	m = Math.floor secs / 60
 	s = secs % 60
 	s = "0"+s unless s >= 10
-	s = "0"+s if s == "0"
 	"#{m}:#{s}"
 timepad = (n) ->
-	n < 10 ? "0#{n}" : "#{n}"
+	if n < 10 then "0#{n}" else "#{n}"
 formattime = (d) ->
-	timepad(d.getHours()) + ":" + timepad(d.getMinutes()) + ":" +  timepad(d.getSeconds())
+	timepad(d.getHours()) + ":" + timepad(d.getMinutes())# + ":" +  timepad(d.getSeconds())
 
 message = {"t": Date.now(), "message": 'message here'}
 error = 'This is an example error'
@@ -54,7 +53,8 @@ resize = () ->
 	# want to fill about 70% of the window
 	w = $(window).width()*0.7
 	h = $(window).height()*0.7
-	s = Math.min w,h
+	s = Math.round Math.min w,h
+	
 	timer.size = s
 	$('#clockface').width(s).height(s)
 	$('#timeleftdisplay').css
@@ -99,11 +99,9 @@ $ ->
 			if(timer.is_running)
 				timer.timeleft -= 1
 				update()
-			ts = new Date()
-			# TODO print timestamp on object somewhere
 			
-			timestr = ts.toLocaleTimeString()
-			$('#timedisplay').html timestr.substr(0,timestr.length-6)
+			ts = new Date()
+			$('#timedisplay').html formattime ts
 		,1000
 	
 start = ->
