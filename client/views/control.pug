@@ -3,6 +3,7 @@ html
 		meta(name='viewport',content='width=device-width')
 		title RaM pitch timer control
 		link(rel='stylesheet', href='/style/main.css')
+		link(rel='stylesheet', href='/style/control.css')
 		script(src='lib/primus.js')
 		script(src='lib/jquery-3.0.0.js')
 		script(src='js/control.js')
@@ -10,28 +11,24 @@ html
 		body
 			.main
 				h1 TIMER CONTROL
+				h2 Time settings
+				p Input as "ssss" or "m:ss"; example 5 minutes: "300" (seconds) or "5:00"
 				table
-					tr
-						th Time left
-						th Period
-					tr
-						td ssss or m:ss
-						td 5 min: "300" or "5:00"
-					tr
+					tr 
 						td
-							input#timeleft(value=300)
+							label t
 						td
-							input#T(value=300)
+							input#timeleft(type='text',value=300)
+						td
+							input#set_time(type='button',value='SET')
 					tr
 						td
-							input#set_time(type='button',value='Set time')
-							input#reset_time(type='button',value='Reset')
-								
+							label T
 						td
-							input#set_period(type='button',value='Set T')
-				table
-					tr
+							input#T(type='text',value=300)
 						td
-							input#start(type='button',value='START')
-						td
-							input#stop(type='button',value='STOP')
+							input#set_period(type='button',value='SET')
+				p
+					input#reset_time(type='button',value='Reset')
+					input#start(type='button',value='START')
+					input#stop(type='button',value='STOP')
