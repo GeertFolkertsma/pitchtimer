@@ -1,0 +1,16 @@
+body{
+}
+
+label, input{
+	width: 100%;
+	font-size: 1.5em;
+}
+label{
+	display: inline-block;
+}
+table{
+	width: 100%;
+}
+td:first-child{
+	width: 1em;
+}
