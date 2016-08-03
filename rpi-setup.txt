@@ -1,0 +1,23 @@
+RASPBIAN INSTAL
+- enable ssh; change password to RaM2016_mr
+- set to autologin to shell; 
+- log in once;
+- apt-get install unclutter xautomation
+- copy file load_timer.sh to /home/pi and chmod +x
+- Change ~/.config/lxsession/LXDE-pi/autostart to contain the following:
+
+    @lxpanel --profile LXDE-pi
+    @pcmanfm --desktop --profile LXDE-pi
+
+    @xset s off      # no screensaver
+    @xset s noblank  # do not switch off graphics/screen
+    @xset -dpms      # no power management
+    
+    /home/pi/load_timer.sh
+    
+Then edit ~/.config/lxpanel/LXDE-pi/panels/panel and set:
+- autohide=1
+- heightwhenhidden=0
+
+
+This should auto-launch the timer display full-screen upon boot!
