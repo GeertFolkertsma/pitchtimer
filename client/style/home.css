@@ -2,10 +2,10 @@
 
 .timer_container {
 	position: fixed;
-	width: 70%;
+	width: 90%;
 	text-align: center;
-	left: 15%;
-	top: 10%;
+	left: 5%;
+	top: 5%;
 }
 #timeleftdisplay{
 	margin-top: -216px;
