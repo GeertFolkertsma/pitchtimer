@@ -104,8 +104,6 @@ redraw = (t) ->
 	$('#arc').attr('stroke',"hsl(#{Math.round(frac*120)},100%,50%)")
 		
 $ ->
-	$('#startbutton').on 'click', start
-	$('#stopbutton').on 'click', stop
 	resize()
 	setInterval ->
 			if(timer.is_running)
