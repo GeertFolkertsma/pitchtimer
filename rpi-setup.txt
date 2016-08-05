@@ -19,5 +19,7 @@ Then edit ~/.config/lxpanel/LXDE-pi/panels/panel and set:
 - autohide=1
 - heightwhenhidden=0
 
-
 This should auto-launch the timer display full-screen upon boot!
+
+[later]
+screen still blanks: according to http://www.raspberry-projects.com/pi/pi-operating-systems/raspbian/gui/disable-screen-sleep set xserver-command=X -s 0 dpms in /etc/lightdm/lightdm.conf
