@@ -71,25 +71,37 @@ update = () ->
 		$('#timeleftdisplay').removeClass 'overtime'
 		$('#timeleftdisplay').html secs2duration(timer.timeleft)
 
+drawArc = (frac) ->
+	# change the svg's arc to run from N, by E-S-W, to sweep (1-<frac>)*360 deg
+	# starting point is always N, but have to subtract stroke width
+	s = timer.size
+	stroke = Math.round(s / 10)
+	r = Math.floor(s / 2 - stroke / 2)
+	
+	#bit of an ugly hack, but: arc will never be a full circle
+	if Math.round(1000*frac) == 0 then frac = 0.0001
+	start = "#{s/ 2},#{0+stroke/ 2}"
+	# end is something with cos and sin
+	end = "#{s/ 2 + r*Math.sin(2*Math.PI*(1-frac))},#{s/ 2 - r*Math.cos(2*Math.PI*(1-frac))}"
+	# we need small arc for frac <= 0.5 and large arc for frac > 0.5
+	large_arc = if frac < 0.5 then 1 else 0
+	sweep = 1 #always go clockwise
+	
+	# construct the svg path (the magic 0 is axis rotation)
+	d = "M#{start} A#{r},#{r} 0 #{large_arc},#{sweep} #{end}"
+	$('#arc').attr
+		'd': d
+		'stroke-width': stroke
+	
+	
 redraw = (t) ->
 	# Redraw the svg timer thingy
 	frac = t / (timer.T) #runs from 1 to 0
 	if frac < 0 then frac = 0 #do not go below 0
-	w = timer.size
-	r = w / 2 * Math.sqrt(2)
 	
-	pc = {x: w / 2, y: w / 2 }
-	polypoints = "#{pc.x},#{pc.y}"
-	# we need to obscure from 1 to 0 -> all to nothing
-	# generate 10 points around the circle
-	angles = (Math.PI / 2 + i*frac*Math.PI*2 for i in [0..1] by 0.1)
-	circle_points = ({x: w / 2 + r*Math.cos(a), y: w / 2 - r*Math.sin(a)} for a in angles)
-	for p in circle_points
-		polypoints += " #{p.x},#{p.y}"
+	drawArc frac
 	
-	
-	$('#clockface polygon').attr('points',polypoints)
-	$('#clockface circle').attr('stroke',"hsl(#{Math.round(frac*120)},100%,50%)")
+	$('#arc').attr('stroke',"hsl(#{Math.round(frac*120)},100%,50%)")
 		
 $ ->
 	$('#startbutton').on 'click', start
