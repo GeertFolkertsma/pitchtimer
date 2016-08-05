@@ -15,6 +15,8 @@ app.get '/', (req,res) ->
 	res.render 'home'
 app.get '/control', (req,res) ->
 	res.render 'control'
+app.get '/svgtest', (req,res) ->
+	res.render 'svgtest'
 
 server = http.createServer app
 
