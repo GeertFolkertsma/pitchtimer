@@ -2,7 +2,7 @@ RASPBIAN INSTAL
 - enable ssh; change password to RaM2016_mr
 - set to autologin to shell; 
 - log in once;
-- apt-get install unclutter xautomation
+- apt-get install unclutter xautomation firefox-esr
 - copy file load_timer.sh to /home/pi and chmod +x
 - Change ~/.config/lxsession/LXDE-pi/autostart to contain the following:
 
@@ -23,3 +23,15 @@ This should auto-launch the timer display full-screen upon boot!
 
 [later]
 screen still blanks: according to http://www.raspberry-projects.com/pi/pi-operating-systems/raspbian/gui/disable-screen-sleep set xserver-command=X -s 0 dpms in /etc/lightdm/lightdm.conf
+
+This works :)
+
+
+VNC setup
+To check from remote: as per https://www.raspberrypi.org/documentation/remote-access/vnc/
+- sudo apt-get install tightvncserver
+- vncserver :1 -geometry 1920x1080 -depth 24
+
+From remote:
+ssh -NL 5901:localhost:5901
+vnc://localhost:1
