@@ -2,3 +2,8 @@
 - Authentication for control
 - Separate timer instances? With selectable ID or location
 - Connected-indication for both timer and R/C
+
+- Reset must also set T
+- Hide t?
+- Stop rename to pause
+- Standard buttons for MSc/BSc presentation
