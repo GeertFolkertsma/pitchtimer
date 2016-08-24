@@ -14,7 +14,7 @@ html
 				h2 Time settings
 				p Input as "ssss" or "m:ss"; example 5 minutes: "300" (seconds) or "5:00"
 				table
-					tr 
+					tr(class='advanced')
 						td
 							label t
 						td
@@ -30,5 +30,11 @@ html
 							input#set_period(type='button',value='SET')
 				p
 					input#reset_time(type='button',value='Reset')
-					input#start(type='button',value='START')
-					input#stop(type='button',value='STOP')
+					input#bsc(type='button',value='BSc')
+					input#msc(type='button',value='MSc')
+					input#start(type='button',value='Start')
+					input#stop(type='button',value='Stop / Pause')
+				p#advanced_container
+					label(for='advanced')
+						input#advanced(type='checkbox')
+						| Show advanced controls

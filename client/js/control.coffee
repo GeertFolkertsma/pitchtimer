@@ -34,9 +34,20 @@ $ ->
 		send_action 'set_time', parseTime $('#timeleft').val()
 	$('#reset_time').click ->
 		$('#timeleft').val $('#T').val()
+		$('#stop').click()
+		$('#set_period').click()
 		$('#set_time').click()
 	$('#set_period').click ->
 		send_action 'set_period', parseTime $('#T').val()
+	$('#msc').click ->
+		$('#T').val '30:00'
+		$('#reset_time').click()
+	$('#bsc').click ->
+		$('#T').val '20:00'
+		$('#reset_time').click()
+	
+	$('#advanced').change ->
+		$('.advanced').toggle(this.checked)
 	
 	$('#T,#timeleft').keydown (event) ->
 		if event.which == 13

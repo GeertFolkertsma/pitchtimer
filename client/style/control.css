@@ -5,8 +5,19 @@ label, input{
 	width: 100%;
 	font-size: 1.5em;
 }
+input#msc, input#bsc{
+	width: 50%;
+	margin: auto;
+	font-size: 2em;
+}
 label{
 	display: inline-block;
+}
+input#advanced{
+	width: 1.5em;
+}
+.advanced{
+	display: none;
 }
 table{
 	width: 100%;
