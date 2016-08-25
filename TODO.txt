@@ -1,4 +1,4 @@
 - Even better styling of control
 - Authentication for control
 - Separate timer instances? With selectable ID or location
-- Connected-indication for both timer and R/C
+- Connected-indication for timer

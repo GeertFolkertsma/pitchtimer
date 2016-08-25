@@ -8,8 +8,11 @@ primus.on 'reload', ->
 	console.log 'reloading'
 	location.reload()
 
+window.last_heartbeat = -1
 primus.on 'rpt_heartbeat', (ts) ->
 	# Want to do anything?
+	window.last_heartbeat = new Date()
+	
 
 primus.on 'data', (data) ->
 	console.log 'data', data
@@ -24,7 +27,24 @@ parseTime = (t) ->
 	else
 		parseInt(t[0])
 
+timepad = (n) ->
+	if n < 10 then "0#{n}" else "#{n}"
+formattime = (d) ->
+	timepad(d.getHours()) + ":" + timepad(d.getMinutes()) + ":" +  timepad(d.getSeconds())
+
 $ ->
+	setInterval ->
+			ts = new Date()
+			$('#timedisplay').html formattime ts
+			if window.last_heartbeat == -1
+				$('#connection').html "Not connected yet!"
+			else
+				s = (ts.getTime() - window.last_heartbeat.getTime()) / 1000
+				if s > 2
+					$('#connection').html "Last server contact: #{s} s ago"
+				else
+					$('#connection').html "Connected to server."
+		,1000
 	
 	$('#start').click ->
 		send_action 'start', {}
