@@ -1,3 +1,4 @@
 - Even better styling of control
 - Authentication for control
 - Separate timer instances? With selectable ID or location
+- proper startup script for server-side rpi?

@@ -119,7 +119,7 @@ $ ->
 			$('#timedisplay').html formattime ts
 			
 			# connection status
-			if ts.getTime() - window.last_heartbeat > 1500
+			if ts.getTime() - window.last_heartbeat > 2500
 				$('#connection_status').attr('fill','rgba(255,0,0,0.5)')
 			else
 				$('#connection_status').attr('fill','rgba(0,127,0,0.5)')

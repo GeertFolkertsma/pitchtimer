@@ -39,7 +39,7 @@ $ ->
 			if window.last_heartbeat == -1
 				$('#connection').html "Not connected yet!"
 			else
-				s = (ts.getTime() - window.last_heartbeat.getTime()) / 1000
+				s = Math.round((ts.getTime() - window.last_heartbeat.getTime()) / 1000)
 				if s > 2
 					$('#connection').html "Last server contact: #{s} s ago"
 				else
