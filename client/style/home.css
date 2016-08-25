@@ -18,3 +18,11 @@
 .overtime{
 	color: red;
 }
+
+#percentage{
+	position: fixed;
+	right: 1em;
+	bottom: 1em;
+	color: #666;
+	font-family: Hack, monospace;
+}

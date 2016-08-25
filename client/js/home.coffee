@@ -64,12 +64,15 @@ resize = () ->
 
 update = () ->
 	redraw(timer.timeleft)
+	frac = timer.timeleft / timer.T
 	if timer.timeleft < 0
 		$('#timeleftdisplay').addClass 'overtime'
 		$('#timeleftdisplay').html "+" + secs2duration(-timer.timeleft)
+		$('#percentage').html "+" + Math.round(-100*frac) + "%"
 	else
 		$('#timeleftdisplay').removeClass 'overtime'
 		$('#timeleftdisplay').html secs2duration(timer.timeleft)
+		$('#percentage').html Math.round(100*frac) + "%"
 
 drawArc = (frac) ->
 	# change the svg's arc to run from N, by E-S-W, to sweep (1-<frac>)*360 deg
