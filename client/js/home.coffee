@@ -7,6 +7,7 @@ window.timer =
 	
 	size: 400
 
+
 primus.on 'open', ->
 	primus.write
 		message: "This is a new client connecting"
@@ -15,9 +16,10 @@ primus.on 'reload', ->
 	console.log 'reloading'
 	location.reload()
 
+window.last_heartbeat = -1
 primus.on 'rpt_heartbeat', (ts) ->
 	# do something with this heartbeat?
-	_ts = ts
+	window.last_heartbeat = new Date()
 
 primus.on 'timer', (data) ->
 	console.log data
@@ -115,6 +117,12 @@ $ ->
 			
 			ts = new Date()
 			$('#timedisplay').html formattime ts
+			
+			# connection status
+			if ts.getTime() - window.last_heartbeat > 1500
+				$('#connection_status').attr('fill','rgba(255,0,0,0.5)')
+			else
+				$('#connection_status').attr('fill','rgba(0,127,0,0.5)')
 		,1000
 	
 start = ->

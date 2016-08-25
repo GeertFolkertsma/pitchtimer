@@ -1,4 +1,3 @@
 - Even better styling of control
 - Authentication for control
 - Separate timer instances? With selectable ID or location
-- Connected-indication for timer

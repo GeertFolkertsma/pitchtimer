@@ -12,6 +12,8 @@ html
 	
 		body
 			.main
+				svg(width='20',height='20')
+					circle#connection_status(cx='10',cy='10',r='10',stroke='none',fill='red')
 				.timer_container
 					svg#clockface(width='400',height='400')
 						path(id='arc',d='M200,20 A180,180 0 0,1 200,380',style='fill:none;')
