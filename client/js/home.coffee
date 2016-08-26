@@ -63,6 +63,7 @@ resize = () ->
 		'font-size': Math.round(s/ 10) + 'px'
 		'margin-top': Math.round(-s/ 2 - s/ 20 ) + 'px'
 	$('#timedisplay').css('font-size', Math.round(s/ 20)+'px')
+	$('#percentage').css('font-size', Math.round(s/ 20)+'px')
 
 update = () ->
 	redraw(timer.timeleft)
