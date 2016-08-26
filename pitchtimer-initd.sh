@@ -11,7 +11,7 @@ case "$1" in
   ;;
   "restart")
     echo "Restarting and rebuilding pitchtimer"
-    cd /home/pi/pitchtimer && ./stoppitchtimer.sh && ./startpitchtimer.sh repack
+    cd /home/pi/pitchtimer && ./stoppitchtimer.sh && ./startpitchtimer.sh recompile
   ;;
   *) ;;
 esac
