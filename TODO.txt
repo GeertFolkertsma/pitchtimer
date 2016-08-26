@@ -1,6 +1,5 @@
 - Even better styling of control
 - Authentication for control
 - Separate timer instances? With selectable ID or location
-- proper startup script for server-side rpi?
 - brightness control of screen
 - automatic stop/reset if more than both(+50%,10min) overtime

@@ -1,5 +1,6 @@
 #!/bin/bash
-
+#   make available by 
+#ln -s /home/pi/pitchtimer/pitchtimer-initd.sh /etc/init.d/pitchtimer
 case "$1" in
   "start")
     echo "Starting pitchtimer"
